@@ -1,0 +1,139 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <title>Banking App</title>-->
+<!--    <link rel="stylesheet" href="style.css" />-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Banking App Dashboard</h1>-->
+
+<!--<div class="container">-->
+
+<!--    &lt;!&ndash; Create Account &ndash;&gt;-->
+<!--    <section class="card">-->
+<!--        <h2>Create Account</h2>-->
+<!--        <form id="create-account-form">-->
+<!--            <label>-->
+<!--                Account Holder Name:-->
+<!--                <input type="text" id="create-name" required />-->
+<!--            </label>-->
+<!--            <label>-->
+<!--                Initial Balance:-->
+<!--                <input type="number" id="create-balance" step="0.01" value="0" required />-->
+<!--            </label>-->
+<!--            <button type="submit">Create Account</button>-->
+<!--        </form>-->
+<!--        <pre class="output" id="create-account-output"></pre>-->
+<!--    </section>-->
+
+<!--    &lt;!&ndash; Get Account by ID &ndash;&gt;-->
+<!--    <section class="card">-->
+<!--        <h2>Get Account by ID</h2>-->
+<!--        <form id="get-account-form">-->
+<!--            <label>-->
+<!--                Account ID:-->
+<!--                <input type="number" id="get-account-id" required />-->
+<!--            </label>-->
+<!--            <button type="submit">Get Account</button>-->
+<!--        </form>-->
+<!--        <pre class="output" id="get-account-output"></pre>-->
+<!--    </section>-->
+
+<!--    &lt;!&ndash; List All Accounts &ndash;&gt;-->
+<!--    <section class="card">-->
+<!--        <h2>All Accounts</h2>-->
+<!--        <button id="load-accounts-btn">Load All Accounts</button>-->
+<!--        <table id="accounts-table">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>ID</th>-->
+<!--                <th>Holder Name</th>-->
+<!--                <th>Balance</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody></tbody>-->
+<!--        </table>-->
+<!--    </section>-->
+
+<!--    &lt;!&ndash; Deposit / Withdraw &ndash;&gt;-->
+<!--    <section class="card">-->
+<!--        <h2>Deposit / Withdraw</h2>-->
+<!--        <form id="deposit-form">-->
+<!--            <h3>Deposit</h3>-->
+<!--            <label>-->
+<!--                Account ID:-->
+<!--                <input type="number" id="deposit-id" required />-->
+<!--            </label>-->
+<!--            <label>-->
+<!--                Amount:-->
+<!--                <input type="number" id="deposit-amount" step="0.01" required />-->
+<!--            </label>-->
+<!--            <button type="submit">Deposit</button>-->
+<!--        </form>-->
+
+<!--        <form id="withdraw-form">-->
+<!--            <h3>Withdraw</h3>-->
+<!--            <label>-->
+<!--                Account ID:-->
+<!--                <input type="number" id="withdraw-id" required />-->
+<!--            </label>-->
+<!--            <label>-->
+<!--                Amount:-->
+<!--                <input type="number" id="withdraw-amount" step="0.01" required />-->
+<!--            </label>-->
+<!--            <button type="submit">Withdraw</button>-->
+<!--        </form>-->
+
+<!--        <pre class="output" id="deposit-withdraw-output"></pre>-->
+<!--    </section>-->
+
+<!--    &lt;!&ndash; Transfer Funds &ndash;&gt;-->
+<!--    <section class="card">-->
+<!--        <h2>Transfer Funds</h2>-->
+<!--        <form id="transfer-form">-->
+<!--            <label>-->
+<!--                From Account ID:-->
+<!--                <input type="number" id="transfer-from" required />-->
+<!--            </label>-->
+<!--            <label>-->
+<!--                To Account ID:-->
+<!--                <input type="number" id="transfer-to" required />-->
+<!--            </label>-->
+<!--            <label>-->
+<!--                Amount:-->
+<!--                <input type="number" id="transfer-amount" step="0.01" required />-->
+<!--            </label>-->
+<!--            <button type="submit">Transfer</button>-->
+<!--        </form>-->
+<!--        <pre class="output" id="transfer-output"></pre>-->
+<!--    </section>-->
+
+<!--    &lt;!&ndash; Transactions &ndash;&gt;-->
+<!--    <section class="card">-->
+<!--        <h2>Account Transactions</h2>-->
+<!--        <form id="transactions-form">-->
+<!--            <label>-->
+<!--                Account ID:-->
+<!--                <input type="number" id="transactions-account-id" required />-->
+<!--            </label>-->
+<!--            <button type="submit">Load Transactions</button>-->
+<!--        </form>-->
+<!--        <table id="transactions-table">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>ID</th>-->
+<!--                <th>Amount</th>-->
+<!--                <th>Type</th>-->
+<!--                <th>Timestamp</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody></tbody>-->
+<!--        </table>-->
+<!--    </section>-->
+
+<!--</div>-->
+
+<!--<script src="app.js" defer></script>-->
+<!--</body>-->
+<!--</html>-->
