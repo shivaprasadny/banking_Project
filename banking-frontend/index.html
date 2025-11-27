@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nova Bank — Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app-shell">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">₿</div>
+      <div class="brand-text">
+        <span class="brand-title">Nova Bank</span>
+        <span class="brand-subtitle">Developer Console</span>
+      </div>
+    </div>
+
+    <nav class="nav-menu">
+      <button class="nav-item active" data-view-target="dashboard">
+        <span>📊</span> Dashboard
+      </button>
+      <button class="nav-item" data-view-target="accounts">
+        <span>👤</span> Accounts
+      </button>
+      <button class="nav-item" data-view-target="transactions">
+        <span>💸</span> Transactions
+      </button>
+      <button class="nav-item" data-view-target="tools">
+        <span>🛠️</span> Tools
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="avatar">S</div>
+        <div>
+          <div class="user-name">Shiva Prasad</div>
+          <div class="user-role">Full Stack Dev</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main area -->
+  <div class="main-area">
+    <!-- Top bar -->
+    <header class="topbar">
+      <div>
+        <h1 class="topbar-title">Banking App Dashboard</h1>
+        <p class="topbar-subtitle">Practice playground for your Spring Boot API</p>
+      </div>
+      <div class="topbar-actions">
+        <button class="pill-btn" id="refresh-dashboard-btn">⟳ Refresh Data</button>
+        <span class="pill-label">Backend: <code>http://localhost:8080</code></span>
+      </div>
+    </header>
+
+    <!-- Toast / notification -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Views -->
+    <main class="views">
+
+      <!-- DASHBOARD VIEW -->
+      <section class="view active" id="view-dashboard">
+        <div class="grid-3">
+          <div class="card metric-card">
+            <div class="metric-label">Total Accounts</div>
+            <div class="metric-value" id="metric-total-accounts">—</div>
+            <div class="metric-footnote">Active in database</div>
+          </div>
+          <div class="card metric-card">
+            <div class="metric-label">Total Balance</div>
+            <div class="metric-value" id="metric-total-balance">—</div>
+            <div class="metric-footnote">Sum of all account balances</div>
+          </div>
+          <div class="card metric-card">
+            <div class="metric-label">Last Updated</div>
+            <div class="metric-value small" id="metric-last-updated">Never</div>
+            <div class="metric-footnote">Click refresh to sync</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2>Recent Accounts</h2>
+            <button class="pill-btn pill-btn-ghost" id="dash-refresh-table-btn">⟳ Reload</button>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table" id="dashboard-accounts-table">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Holder</th>
+                <th>Balance</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr><td colspan="3" class="muted">No data yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACCOUNTS VIEW -->
+      <section class="view" id="view-accounts">
+        <div class="grid-2">
+          <!-- Create account -->
+          <div class="card">
+            <div class="card-header">
+              <h2>Create Account</h2>
+            </div>
+            <form id="create-account-form" class="form">
+              <label class="field">
+                <span>Account Holder Name</span>
+                <input type="text" id="create-name" placeholder="e.g. Shiva Prasad" required />
+              </label>
+              <label class="field">
+                <span>Initial Balance</span>
+                <input type="number" id="create-balance" step="0.01" value="0" required />
+              </label>
+              <button type="submit" class="primary-btn">Create</button>
+            </form>
+            <pre class="output" id="create-account-output"></pre>
+          </div>
+
+          <!-- Get account + deposit/withdraw -->
+          <div class="card">
+            <div class="card-header">
+              <h2>Account Actions</h2>
+            </div>
+
+            <form id="get-account-form" class="form inline-form">
+              <label class="field">
+                <span>Account ID</span>
+                <input type="number" id="get-account-id" required />
+              </label>
+              <button type="submit" class="secondary-btn">Fetch</button>
+            </form>
+            <pre class="output" id="get-account-output"></pre>
+
+            <div class="divider"></div>
+
+            <div class="grid-2-tight">
+              <form id="deposit-form" class="form">
+                <h3>Deposit</h3>
+                <label class="field">
+                  <span>Account ID</span>
+                  <input type="number" id="deposit-id" required />
+                </label>
+                <label class="field">
+                  <span>Amount</span>
+                  <input type="number" id="deposit-amount" step="0.01" required />
+                </label>
+                <button type="submit" class="primary-btn subtle">Deposit</button>
+              </form>
+
+              <form id="withdraw-form" class="form">
+                <h3>Withdraw</h3>
+                <label class="field">
+                  <span>Account ID</span>
+                  <input type="number" id="withdraw-id" required />
+                </label>
+                <label class="field">
+                  <span>Amount</span>
+                  <input type="number" id="withdraw-amount" step="0.01" required />
+                </label>
+                <button type="submit" class="danger-btn subtle">Withdraw</button>
+              </form>
+            </div>
+
+            <pre class="output" id="deposit-withdraw-output"></pre>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2>All Accounts</h2>
+            <button class="pill-btn pill-btn-ghost" id="load-accounts-btn">⟳ Refresh</button>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table" id="accounts-table">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Holder</th>
+                <th>Balance</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr><td colspan="3" class="muted">No accounts loaded.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSACTIONS VIEW -->
+      <section class="view" id="view-transactions">
+        <div class="grid-2">
+          <!-- Transfer -->
+          <div class="card">
+            <div class="card-header">
+              <h2>Transfer Funds</h2>
+            </div>
+            <form id="transfer-form" class="form">
+              <div class="grid-2-tight">
+                <label class="field">
+                  <span>From Account ID</span>
+                  <input type="number" id="transfer-from" required />
+                </label>
+                <label class="field">
+                  <span>To Account ID</span>
+                  <input type="number" id="transfer-to" required />
+                </label>
+              </div>
+              <label class="field">
+                <span>Amount</span>
+                <input type="number" id="transfer-amount" step="0.01" required />
+              </label>
+              <button type="submit" class="primary-btn">Transfer</button>
+            </form>
+            <pre class="output" id="transfer-output"></pre>
+          </div>
+
+          <!-- Transactions list -->
+          <div class="card">
+            <div class="card-header">
+              <h2>Account Transactions</h2>
+            </div>
+            <form id="transactions-form" class="form inline-form">
+              <label class="field">
+                <span>Account ID</span>
+                <input type="number" id="transactions-account-id" required />
+              </label>
+              <button type="submit" class="secondary-btn">Load</button>
+            </form>
+
+            <div class="table-wrapper">
+              <table class="data-table" id="transactions-table">
+                <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Amount</th>
+                  <th>Type</th>
+                  <th>Timestamp</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td colspan="4" class="muted">No transactions loaded.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TOOLS / DEBUG VIEW -->
+      <section class="view" id="view-tools">
+        <div class="card">
+          <div class="card-header">
+            <h2>API Debug Console</h2>
+          </div>
+          <p class="muted">
+            Quick helper to ping your backend. Good for checking if CORS / server is alive.
+          </p>
+          <div class="form">
+            <label class="field">
+              <span>Endpoint (relative to <code>/api/accounts</code>)</span>
+              <input type="text" id="debug-path" placeholder="/1 or /?page=0" />
+            </label>
+            <div class="grid-2-tight">
+              <label class="field">
+                <span>Method</span>
+                <select id="debug-method">
+                  <option>GET</option>
+                  <option>POST</option>
+                  <option>PUT</option>
+                  <option>DELETE</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Body (JSON)</span>
+                <input type="text" id="debug-body" placeholder='{"amount":100}' />
+              </label>
+            </div>
+            <button class="primary-btn" id="debug-send-btn">Send Request</button>
+          </div>
+          <pre class="output" id="debug-output"></pre>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
